@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -38,7 +39,8 @@ public class CategoriaResource {
 	
 	@PostMapping
 	//@ResponseStatus(code = HttpStatus.CREATED)
-	public ResponseEntity<Categoria> criar(@RequestBody Categoria categoria, HttpServletResponse response) {
+	//@Valid valida o model Categoria Antes de Salvar
+	public ResponseEntity<Categoria> criar(@Valid @RequestBody Categoria categoria, HttpServletResponse response) {
 		Categoria categoriaSalva = categoriaRepository.save(categoria);
 		
 		//Constroi uma resposta a partir da URI atual devolvendo uma uri referente ao recurso
